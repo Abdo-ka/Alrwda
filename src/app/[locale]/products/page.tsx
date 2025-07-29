@@ -41,17 +41,17 @@ export default function ProductsPage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('/api/products');
+        const response = await fetch("/api/products");
         if (response.ok) {
           const productData = await response.json();
           setProducts(productData);
           setError(false);
         } else {
-          console.error('Failed to fetch products');
+          console.error("Failed to fetch products");
           setError(true);
         }
       } catch (error) {
-        console.error('Error loading products:', error);
+        console.error("Error loading products:", error);
         setError(true);
       } finally {
         setLoading(false);
@@ -78,7 +78,9 @@ export default function ProductsPage() {
         <div className="text-center">
           <Clock className="h-8 w-8 text-muted-foreground mx-auto mb-4" />
           <p className="text-lg font-medium mb-2">Coming back soon</p>
-          <p className="text-muted-foreground">We&apos;re working on getting our products back online.</p>
+          <p className="text-muted-foreground">
+            We&apos;re working on getting our products back online.
+          </p>
         </div>
       </div>
     );
@@ -128,14 +130,14 @@ export default function ProductsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product, index) => (
-              <Card 
-                key={product.id} 
+              <Card
+                key={product.id}
                 className={`group hover:shadow-xl transition-all duration-500 border-2 hover:scale-[1.02] ${
-                  index % 3 === 0 
-                    ? "border-palette-black/20 hover:border-palette-black" 
-                    : index % 3 === 1 
-                    ? "border-palette-silver/20 hover:border-palette-silver"
-                    : "border-palette-red/20 hover:border-palette-red"
+                  index % 3 === 0
+                    ? "border-palette-black/20 hover:border-palette-black"
+                    : index % 3 === 1
+                      ? "border-palette-silver/20 hover:border-palette-silver"
+                      : "border-palette-red/20 hover:border-palette-red"
                 }`}
               >
                 <div className="relative overflow-hidden rounded-t-lg">
@@ -152,33 +154,28 @@ export default function ProductsPage() {
                       size="sm"
                       className="bg-white/90 hover:bg-white border-none shadow-md"
                       onClick={() => {
-                        const url = `${window.location.origin}/${locale}/products/${product.id}`;
-                        if (navigator.share) {
-                          navigator.share({
-                            title: product.name[currentLang],
-                            url: url,
-                          }).catch(() => {
-                            navigator.clipboard.writeText(url);
-                          });
-                        } else {
-                          navigator.clipboard.writeText(url);
-                        }
+                        // Test Sentry error tracking
+                        throw new Error(
+                          `Sentry test error - Share clicked for product: ${product.name[currentLang]} (ID: ${product.id})`,
+                        );
                       }}
                     >
                       <Share2 className="h-4 w-4 text-palette-black" />
                     </Button>
-                    <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      index % 3 === 0 
-                        ? "bg-palette-emerald-100 text-palette-emerald-800 dark:bg-palette-emerald-900 dark:text-palette-emerald-200" 
-                        : index % 3 === 1 
-                        ? "bg-palette-amber-100 text-palette-amber-800 dark:bg-palette-amber-900 dark:text-palette-amber-200"
-                        : "bg-palette-indigo-100 text-palette-indigo-800 dark:bg-palette-indigo-900 dark:text-palette-indigo-200"
-                    }`}>
+                    <div
+                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        index % 3 === 0
+                          ? "bg-palette-emerald-100 text-palette-emerald-800 dark:bg-palette-emerald-900 dark:text-palette-emerald-200"
+                          : index % 3 === 1
+                            ? "bg-palette-amber-100 text-palette-amber-800 dark:bg-palette-amber-900 dark:text-palette-amber-200"
+                            : "bg-palette-indigo-100 text-palette-indigo-800 dark:bg-palette-indigo-900 dark:text-palette-indigo-200"
+                      }`}
+                    >
                       {product.category[currentLang]}
                     </div>
                   </div>
                 </div>
-                
+
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {product.name[currentLang]}
@@ -186,33 +183,42 @@ export default function ProductsPage() {
                   <p className="text-muted-foreground mb-4 line-clamp-2">
                     {product.description[currentLang]}
                   </p>
-                  
+
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-2xl font-bold text-palette-red">
                       {product.price}
                     </span>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-palette-amber-500 fill-current" />
-                      <span className="text-sm font-medium">{product.rating}</span>
-                      <span className="text-xs text-muted-foreground">({product.reviews})</span>
+                      <span className="text-sm font-medium">
+                        {product.rating}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        ({product.reviews})
+                      </span>
                     </div>
                   </div>
                 </CardContent>
 
                 <CardFooter className="p-6 pt-0 space-y-3">
-                  <Link href={`/${locale}/products/${product.id}`} className="w-full">
-                    <Button className={`w-full ${
-                      index % 3 === 0 
-                        ? "bg-palette-black hover:bg-palette-black/80" 
-                        : index % 3 === 1 
-                        ? "bg-palette-silver hover:bg-palette-silver/80 text-palette-black"
-                        : "bg-palette-red hover:bg-palette-red/80"
-                    } text-white transition-all duration-300 hover:scale-105`}>
+                  <Link
+                    href={`/${locale}/products/${product.id}`}
+                    className="w-full"
+                  >
+                    <Button
+                      className={`w-full ${
+                        index % 3 === 0
+                          ? "bg-palette-black hover:bg-palette-black/80"
+                          : index % 3 === 1
+                            ? "bg-palette-silver hover:bg-palette-silver/80 text-palette-black"
+                            : "bg-palette-red hover:bg-palette-red/80"
+                      } text-white transition-all duration-300 hover:scale-105`}
+                    >
                       {t("viewDetails")}
                     </Button>
                   </Link>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="w-full border-palette-silver hover:bg-palette-silver/10 transition-all duration-300"
                   >
                     {t("contactForPrice")}
@@ -237,32 +243,47 @@ export default function ProductsPage() {
           </div>
 
           <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4">
-            {["Digital Clocks", "Wall Clocks", "Portable Clocks", "Smart Clocks", "Table Clocks", "Outdoor Displays"].map((category, index) => (
-              <Card 
+            {[
+              "Digital Clocks",
+              "Wall Clocks",
+              "Portable Clocks",
+              "Smart Clocks",
+              "Table Clocks",
+              "Outdoor Displays",
+            ].map((category, index) => (
+              <Card
                 key={category}
                 className={`text-center hover:shadow-lg transition-all duration-300 cursor-pointer group hover:scale-105 shrink-0 min-w-[160px] ${
-                  index % 3 === 0 
-                    ? "hover:border-palette-black" 
-                    : index % 3 === 1 
-                    ? "hover:border-palette-silver"
-                    : "hover:border-palette-red"
+                  index % 3 === 0
+                    ? "hover:border-palette-black"
+                    : index % 3 === 1
+                      ? "hover:border-palette-silver"
+                      : "hover:border-palette-red"
                 }`}
               >
                 <CardContent className="p-6">
-                  <div className={`w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center transition-all duration-300 ${
-                    index % 3 === 0 
-                      ? "bg-palette-black/10 text-palette-black group-hover:bg-palette-black/20" 
-                      : index % 3 === 1 
-                      ? "bg-palette-silver/10 text-palette-silver group-hover:bg-palette-silver/20"
-                      : "bg-palette-red/10 text-palette-red group-hover:bg-palette-red/20"
-                  }`}>
+                  <div
+                    className={`w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      index % 3 === 0
+                        ? "bg-palette-black/10 text-palette-black group-hover:bg-palette-black/20"
+                        : index % 3 === 1
+                          ? "bg-palette-silver/10 text-palette-silver group-hover:bg-palette-silver/20"
+                          : "bg-palette-red/10 text-palette-red group-hover:bg-palette-red/20"
+                    }`}
+                  >
                     <Clock className="w-6 h-6" />
                   </div>
                   <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {currentLang === "ar" ? 
-                      ["ساعات رقمية", "ساعات حائطية", "ساعات محمولة", "ساعات ذكية", "ساعات طاولة", "شاشات خارجية"][index] 
-                      : category
-                    }
+                    {currentLang === "ar"
+                      ? [
+                          "ساعات رقمية",
+                          "ساعات حائطية",
+                          "ساعات محمولة",
+                          "ساعات ذكية",
+                          "ساعات طاولة",
+                          "شاشات خارجية",
+                        ][index]
+                      : category}
                   </h3>
                 </CardContent>
               </Card>
@@ -283,12 +304,19 @@ export default function ProductsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/contact`}>
-                <Button size="lg" className="bg-palette-red hover:bg-palette-red/80 text-white px-8 py-4 text-lg hover:scale-105 transition-all duration-300">
+                <Button
+                  size="lg"
+                  className="bg-palette-red hover:bg-palette-red/80 text-white px-8 py-4 text-lg hover:scale-105 transition-all duration-300"
+                >
                   {t("contactUs")}
                 </Button>
               </Link>
               <Link href={`/${locale}/support`}>
-                <Button variant="outline" size="lg" className="border-palette-silver hover:bg-palette-silver/10 px-8 py-4 text-lg hover:scale-105 transition-all duration-300">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-palette-silver hover:bg-palette-silver/10 px-8 py-4 text-lg hover:scale-105 transition-all duration-300"
+                >
                   {t("technicalSupport")}
                 </Button>
               </Link>

@@ -1,7 +1,13 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
 import { useEffect, useState, useCallback } from "react";
@@ -18,40 +24,43 @@ export default function ContactPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const getTranslatedDay = useCallback((day: string) => {
-    const dayMap: Record<string, string> = {
-      'Monday': t("contact.monday"),
-      'Tuesday': t("contact.tuesday"), 
-      'Wednesday': t("contact.wednesday"),
-      'Thursday': t("contact.thursday"),
-      'Friday': t("contact.friday"),
-      'Saturday': t("contact.saturday"),
-      'Sunday': t("contact.sunday")
-    };
-    return dayMap[day] || day;
-  }, [t]);
+  const getTranslatedDay = useCallback(
+    (day: string) => {
+      const dayMap: Record<string, string> = {
+        Monday: t("contact.monday"),
+        Tuesday: t("contact.tuesday"),
+        Wednesday: t("contact.wednesday"),
+        Thursday: t("contact.thursday"),
+        Friday: t("contact.friday"),
+        Saturday: t("contact.saturday"),
+        Sunday: t("contact.sunday"),
+      };
+      return dayMap[day] || day;
+    },
+    [t],
+  );
 
   useEffect(() => {
     const fetchBusinessHours = async () => {
       try {
-        const response = await fetch('/api/business-hours');
+        const response = await fetch("/api/business-hours");
         if (response.ok) {
           const hours = await response.json();
-          
+
           // Map the days with proper translations and check if open
           const translatedHours = hours.map((hour: BusinessHour) => ({
             day: getTranslatedDay(hour.day),
             hours: hour.hours === "Closed" ? t("contact.closed") : hour.hours,
-            isOpen: hour.isOpen
+            isOpen: hour.isOpen,
           }));
-          
+
           setBusinessHours(translatedHours);
           setError(false);
         } else {
           setError(true);
         }
       } catch (error) {
-        console.error('Error loading business hours:', error);
+        console.error("Error loading business hours:", error);
         setError(true);
       } finally {
         setLoading(false);
@@ -89,7 +98,8 @@ export default function ContactPage() {
                   {t("contact.getInTouch") || "Get in Touch"}
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  {t("contact.visitShowroom") || "Visit our showroom to see our collection of Islamic electric clocks in person, or contact us for expert advice and support."}
+                  {t("contact.visitShowroom") ||
+                    "Visit our showroom to see our collection of Islamic electric clocks in person, or contact us for expert advice and support."}
                 </p>
               </div>
 
@@ -101,13 +111,18 @@ export default function ContactPage() {
                       <div className="flex items-center justify-center h-10 w-10 bg-palette-emerald-100 dark:bg-palette-emerald-900 rounded-lg">
                         <MapPin className="h-5 w-5 text-palette-emerald-600 dark:text-palette-emerald-400" />
                       </div>
-                      <CardTitle className="text-lg">{t("contact.address")}</CardTitle>
+                      <CardTitle className="text-lg">
+                        {t("contact.address")}
+                      </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      {t("contact.streetAddress") || "123 Islamic Market Street"}<br />
-                      {t("contact.cityAddress") || "Clock District, City 12345"}<br />
+                      {t("contact.streetAddress") ||
+                        "123 Islamic Market Street"}
+                      <br />
+                      {t("contact.cityAddress") || "Clock District, City 12345"}
+                      <br />
                       {t("contact.countryAddress") || "Kingdom of Saudi Arabia"}
                     </p>
                     <Button variant="outline" size="sm" className="mt-3">
@@ -123,13 +138,17 @@ export default function ContactPage() {
                       <div className="flex items-center justify-center h-10 w-10 bg-palette-emerald-100 dark:bg-palette-emerald-900 rounded-lg">
                         <Phone className="h-5 w-5 text-palette-emerald-600 dark:text-palette-emerald-400" />
                       </div>
-                      <CardTitle className="text-lg">{t("contact.phone")}</CardTitle>
+                      <CardTitle className="text-lg">
+                        {t("contact.phone")}
+                      </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      {t("contact.mainPhone") || "+966 11 123 4567"}<br />
-                      {t("contact.whatsappPhone") || "+966 50 123 4567 (WhatsApp)"}
+                      {t("contact.mainPhone") || "+966 11 123 4567"}
+                      <br />
+                      {t("contact.whatsappPhone") ||
+                        "+966 50 123 4567 (WhatsApp)"}
                     </p>
                   </CardContent>
                 </Card>
@@ -140,12 +159,15 @@ export default function ContactPage() {
                       <div className="flex items-center justify-center h-10 w-10 bg-palette-emerald-100 dark:bg-palette-emerald-900 rounded-lg">
                         <Mail className="h-5 w-5 text-palette-emerald-600 dark:text-palette-emerald-400" />
                       </div>
-                      <CardTitle className="text-lg">{t("contact.email")}</CardTitle>
+                      <CardTitle className="text-lg">
+                        {t("contact.email")}
+                      </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      {t("contact.mainEmail") || "info@alrwda-clocks.com"}<br />
+                      {t("contact.mainEmail") || "info@alrwda-clocks.com"}
+                      <br />
                       {t("contact.supportEmail") || "support@alrwda-clocks.com"}
                     </p>
                   </CardContent>
@@ -161,7 +183,9 @@ export default function ContactPage() {
                     <div className="flex items-center justify-center h-10 w-10 bg-palette-amber-100 dark:bg-palette-amber-900 rounded-lg">
                       <Clock className="h-5 w-5 text-palette-amber-600 dark:text-palette-amber-400" />
                     </div>
-                    <CardTitle className="text-xl">{t("contact.hours")}</CardTitle>
+                    <CardTitle className="text-xl">
+                      {t("contact.hours")}
+                    </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -169,42 +193,49 @@ export default function ContactPage() {
                     {loading ? (
                       <div className="text-center py-6">
                         <div className="inline-flex items-center justify-center w-8 h-8 border-2 border-palette-emerald-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-                        <p className="text-sm text-muted-foreground">{t("contact.loadingHours") || "Loading business hours..."}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {t("contact.loadingHours") ||
+                            "Loading business hours..."}
+                        </p>
                       </div>
                     ) : error || businessHours.length === 0 ? (
                       <div className="text-center py-6">
                         <Clock className="h-8 w-8 text-muted-foreground/50 mx-auto mb-3" />
-                        <p className="text-sm text-muted-foreground">{t("contact.hoursUnavailable") || "Business hours temporarily unavailable"}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{t("contact.callForHours") || "Please call for current hours"}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {t("contact.hoursUnavailable") ||
+                            "Business hours temporarily unavailable"}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {t("contact.callForHours") ||
+                            "Please call for current hours"}
+                        </p>
                       </div>
                     ) : (
                       <div className="space-y-1">
-                        {businessHours.map((item, index) => {
-                          const isClosed = !item.isOpen || 
-                                         item.hours === t("contact.closed") || 
-                                         !item.hours || 
-                                         item.hours === "Closed" ||
-                                         item.hours.toLowerCase() === "closed" ||
-                                         item.hours === "مغلق";
-                          
-                          return (
-                            <div key={index} className="flex justify-between items-center py-3 px-2 rounded-lg hover:bg-muted/50 transition-colors">
-                              <span className="font-medium text-foreground">{item.day}</span>
-                              <span 
-                                className={`text-sm font-medium ${
-                                  isClosed 
-                                    ? "text-red-600 dark:text-red-400 font-bold bg-red-50 dark:bg-red-950/20 px-2 py-1 rounded-md border border-red-200 dark:border-red-800" 
-                                    : "text-emerald-600 dark:text-emerald-400"
-                                }`}
-                              >
-                                {item.hours}
-                              </span>
-                            </div>
-                          );
-                        })}
+                        {businessHours.map((item, index) => (
+                          <div
+                            key={index}
+                            className="flex justify-between items-center py-3 px-2 rounded-lg hover:bg-muted/50 transition-colors"
+                          >
+                            <span className="font-medium text-foreground">
+                              {item.day}
+                            </span>
+                            <span
+                              className={`text-sm font-medium transition-colors ${
+                                item.hours === t("contact.closed") ||
+                                !item.isOpen
+                                  ? "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/20 px-2 py-1 rounded-md"
+                                  : "text-emerald-600 dark:text-emerald-400"
+                              }`}
+                            >
+                              {item.hours}
+                            </span>
+                          </div>
+                        ))}
                         <div className="mt-4 p-3 bg-muted/50 rounded-lg">
                           <p className="text-xs text-muted-foreground text-center">
-                            {t("contact.holidayNote") || "Hours may vary during Islamic holidays"}
+                            {t("contact.holidayNote") ||
+                              "Hours may vary during Islamic holidays"}
                           </p>
                         </div>
                       </div>
@@ -216,15 +247,24 @@ export default function ContactPage() {
               {/* Map Placeholder */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-xl text-foreground">{t("contact.location") || "Location"}</CardTitle>
-                  <CardDescription className="text-muted-foreground">{t("contact.locationDesc") || "Find us in the heart of the Islamic market district"}</CardDescription>
+                  <CardTitle className="text-xl text-foreground">
+                    {t("contact.location") || "Location"}
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground">
+                    {t("contact.locationDesc") ||
+                      "Find us in the heart of the Islamic market district"}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
                     <div className="text-center">
                       <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
-                      <p className="text-sm text-muted-foreground">{t("contact.interactiveMap") || "Interactive Map"}</p>
-                      <p className="text-xs text-muted-foreground">{t("contact.comingSoon") || "Coming Soon"}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {t("contact.interactiveMap") || "Interactive Map"}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {t("contact.comingSoon") || "Coming Soon"}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -239,17 +279,22 @@ export default function ContactPage() {
         <div className="container">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              {t("contact.visitShowroomTitle") || "Visit Our Showroom"}
+              Visit Our Showroom
             </h2>
             <p className="mt-6 text-lg leading-8 text-palette-emerald-100">
-              {t("contact.visitShowroomDesc") || "Experience our Islamic clocks in person and get expert consultation from our knowledgeable team."}
+              Experience our Islamic clocks in person and get expert
+              consultation from our knowledgeable team.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Button size="lg" variant="secondary">
-                {t("contact.scheduleVisit") || "Schedule Visit"}
+                Schedule Visit
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-palette-emerald-600">
-                {t("contact.callNow") || "Call Now"}
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-palette-emerald-600"
+              >
+                Call Now
               </Button>
             </div>
           </div>
