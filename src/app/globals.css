@@ -1,26 +1,311 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 208 100% 97%; /* #F0F8FF - Alice Blue */
+    --foreground: 0 0% 0%; /* Pure black for maximum contrast */
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 0 0% 0%; /* Pure black text on cards */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%; /* Pure black text */
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 86%;
+    --secondary-foreground: 0 0% 0%; /* Changed to pure black */
+    --muted: 208 50% 94%;
+    --muted-foreground: 0 0% 15%; /* Very dark gray for muted text */
+    --accent: 208 50% 92%;
+    --accent-foreground: 0 0% 0%; /* Pure black for accent text */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 84% 60%;
+    --radius: 0.75rem;
+    
+    /* Font families */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-arabic: 'Cairo', ui-sans-serif, system-ui, sans-serif;
+    
+    /* Brand Colors - Black, Silver, Red */
+    --brand-black-50: 220 14.3% 95.9%;
+    --brand-black-100: 220 13% 91%;
+    --brand-black-200: 216 12.2% 83.9%;
+    --brand-black-300: 218 10.6% 64.9%;
+    --brand-black-400: 220 8.9% 46.1%;
+    --brand-black-500: 215 13.8% 34.1%;
+    --brand-black-600: 217 19.1% 26.7%;
+    --brand-black-700: 215 27.9% 16.9%;
+    --brand-black-800: 222 47.4% 11.2%;
+    --brand-black-900: 222.2 84% 4.9%;
+    
+    --brand-silver-50: 210 20% 98%;
+    --brand-silver-100: 220 14.3% 95.9%;
+    --brand-silver-200: 0 0% 90%;
+    --brand-silver-300: 0 0% 82%;
+    --brand-silver-400: 0 0% 64%;
+    --brand-silver-500: 0 0% 51%;
+    --brand-silver-600: 0 0% 42%;
+    --brand-silver-700: 0 0% 32%;
+    --brand-silver-800: 0 0% 25%;
+    --brand-silver-900: 0 0% 15%;
+    
+    --brand-red-50: 0 86% 97%;
+    --brand-red-100: 0 93% 94%;
+    --brand-red-200: 0 96% 89%;
+    --brand-red-300: 0 94% 82%;
+    --brand-red-400: 0 91% 71%;
+    --brand-red-500: 0 84% 60%;
+    --brand-red-600: 0 72% 51%;
+    --brand-red-700: 0 74% 42%;
+    --brand-red-800: 0 70% 35%;
+    --brand-red-900: 0 63% 31%;
+    
+    /* Additional accent colors for variety */
+    --accent-emerald-50: 151 81% 96%;
+    --accent-emerald-100: 149 80% 90%;
+    --accent-emerald-200: 152 76% 80%;
+    --accent-emerald-300: 156 72% 67%;
+    --accent-emerald-400: 158 64% 52%;
+    --accent-emerald-500: 160 84% 39%;
+    --accent-emerald-600: 161 94% 30%;
+    --accent-emerald-700: 163 94% 24%;
+    --accent-emerald-800: 163 88% 20%;
+    --accent-emerald-900: 164 86% 16%;
+    
+    --accent-amber-50: 48 100% 96%;
+    --accent-amber-100: 48 96% 89%;
+    --accent-amber-200: 48 97% 77%;
+    --accent-amber-300: 46 97% 65%;
+    --accent-amber-400: 43 96% 56%;
+    --accent-amber-500: 38 92% 50%;
+    --accent-amber-600: 32 95% 44%;
+    --accent-amber-700: 26 90% 37%;
+    --accent-amber-800: 23 83% 31%;
+    --accent-amber-900: 22 78% 26%;
+    
+    --accent-indigo-50: 225 100% 97%;
+    --accent-indigo-100: 226 100% 94%;
+    --accent-indigo-200: 228 96% 89%;
+    --accent-indigo-300: 230 94% 82%;
+    --accent-indigo-400: 234 89% 74%;
+    --accent-indigo-500: 239 84% 67%;
+    --accent-indigo-600: 243 75% 59%;
+    --accent-indigo-700: 245 58% 51%;
+    --accent-indigo-800: 244 55% 41%;
+    --accent-indigo-900: 242 47% 34%;
+    
+    /* Enhanced UI Colors */
+    --surface: 208 100% 98%;
+    --surface-variant: 208 50% 95%;
+    --outline: 208 20% 89%;
+    --outline-variant: 208 30% 95%;
+  }
+
+  /* Force black text in light mode */
+  .text-black-force {
+    color: #000000 !important;
+  }
+  
+  .text-foreground {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Ensure text visibility in light mode - More specific selectors */
+  :root h1, :root h2, :root h3, :root h4, :root h5, :root h6, 
+  :root p, :root span, :root div, :root a, :root button {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Force black text for specific text classes */
+  :root .text-white {
+    color: #000000 !important;
+  }
+  
+  /* Override any white text in light mode */
+  :root:not(.dark) .text-white,
+  :root:not(.dark) [class*="text-white"] {
+    color: #000000 !important;
+  }
+  
+  /* Ensure muted text is still visible */
+  :root .text-muted-foreground {
+    color: hsl(0 0% 20%) !important;
+  }
+  
+  /* Button text overrides for light mode */
+  :root:not(.dark) button:not([class*="bg-"]):not([class*="variant-"]) {
+    color: #000000 !important;
+  }
+  
+  /* Specific button variant overrides */
+  :root:not(.dark) .bg-white button,
+  :root:not(.dark) .bg-transparent button,
+  :root:not(.dark) .bg-background button {
+    color: #000000 !important;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 42 15% 97%;
+    --card: 222 47.4% 11.2%;
+    --card-foreground: 42 15% 97%;
+    --popover: 222 47.4% 11.2%;
+    --popover-foreground: 42 15% 97%;
+    --primary: 0 84% 60%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217 19.1% 26.7%;
+    --secondary-foreground: 42 15% 97%;
+    --muted: 217 19.1% 26.7%;
+    --muted-foreground: 218 10.6% 64.9%;
+    --accent: 217 19.1% 26.7%;
+    --accent-foreground: 42 15% 97%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 42 15% 97%;
+    --border: 217 19.1% 26.7%;
+    --input: 217 19.1% 26.7%;
+    --ring: 0 84% 60%;
+    
+    /* Enhanced Dark UI Colors */
+    --surface: 222 47.4% 11.2%;
+    --surface-variant: 217 19.1% 26.7%;
+    --outline: 217 19.1% 26.7%;
+    --outline-variant: 215 27.9% 16.9%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Container with consistent padding */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+  
+  /* Page transitions */
+  .page-transition {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Enhanced focus states */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: calc(var(--radius) - 2px);
+  }
+  
+  /* English font */
+  html[lang="en"],
+  .font-inter {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+  
+  /* Arabic font */
+  html[lang="ar"],
+  .font-cairo {
+    font-family: var(--font-cairo), 'Noto Sans Arabic', 'Amiri', ui-sans-serif, system-ui, sans-serif;
+  }
+  
+  /* RTL improvements */
+  [dir="rtl"] {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .text-center {
+    text-align: center;
+  }
+  
+  [dir="rtl"] .text-left {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .text-right {
+    text-align: left;
+  }
+}
+
+/* RTL Support for Arabic */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+/* Islamic patterns and decorations */
+.islamic-pattern {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+.islamic-border {
+  border-image: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--primary-foreground))) 1;
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

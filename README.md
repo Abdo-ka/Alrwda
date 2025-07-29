@@ -1,36 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alrwda - Islamic Electric Clock Market
+
+A modern Next.js showcase website for "Alrwda" - an Islamic electric clock market. This project showcases Islamic electric clocks with a focus on providing information about the business, not selling products online.
+
+## Features
+
+- 🕌 **Islamic Design**: Beautiful Islamic-themed design with appropriate colors (deep greens, golds)
+- 🌍 **Internationalization**: Full support for English and Arabic languages with RTL layout
+- 🌙 **Dark Theme**: Default dark theme with smooth light/dark mode toggle
+- 📱 **Responsive Design**: Mobile-first responsive design
+- ⚡ **Modern Stack**: Built with Next.js 14+ App Router, TypeScript, and Tailwind CSS
+- 🔍 **SEO Optimized**: Comprehensive SEO with Next.js metadata API
+- 🚀 **Performance**: Server components and optimized loading
+
+## Tech Stack
+
+- **Framework**: Next.js 14+ with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Internationalization**: next-intl
+- **Theme**: next-themes
+- **UI Components**: Radix UI + shadcn/ui
+- **Icons**: Lucide React
+- **Fonts**: Inter (English) & Cairo (Arabic)
+- **Package Manager**: pnpm
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── [locale]/          # Locale-specific pages
+│   │   ├── layout.tsx     # Locale layout with font selection
+│   │   ├── page.tsx       # Home page
+│   │   ├── products/      # Products showcase
+│   │   ├── contact/       # Contact information
+│   │   └── support/       # Technical support
+│   ├── globals.css        # Global styles with Islamic theme
+│   └── layout.tsx         # Root layout
+├── components/
+│   ├── ui/               # Reusable UI components
+│   ├── header.tsx        # Navigation header
+│   ├── footer.tsx        # Site footer
+│   ├── theme-provider.tsx # Theme context
+│   └── language-switcher.tsx # Language toggle
+├── i18n/
+│   ├── routing.ts        # Internationalization routing
+│   └── request.ts        # Message loading
+├── lib/
+│   └── utils.ts          # Utility functions
+└── messages/
+    ├── en.json           # English translations
+    └── ar.json           # Arabic translations
+```
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies**:
+   ```bash
+   pnpm install
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. **Run the development server**:
+   ```bash
+   pnpm dev
+   ```
+
+3. **Open your browser** and navigate to [http://localhost:3000](http://localhost:3000)
+
+## Available Scripts
+
+- `pnpm dev` - Start development server with Turbopack
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server  
+- `pnpm lint` - Run ESLint
+
+## Pages
+
+- **Home** (`/`): Hero section, about the market, featured products showcase
+- **Products** (`/products`): Gallery of Islamic clocks with categories and descriptions
+- **Contact** (`/contact`): Contact information, location, business hours
+- **Technical Support** (`/support`): Support information, guides, FAQ
+
+## Language Support
+
+The website supports both English and Arabic languages:
+
+- **English**: Uses Inter font, LTR layout
+- **Arabic**: Uses Cairo font, RTL layout
+- Language switcher available in the header
+- All content is properly translated
+
+## Theme System
+
+- **Default**: Dark theme for Islamic aesthetic
+- **Toggle**: Smooth transition between light and dark modes
+- **Islamic Colors**: Deep greens and golds throughout the design
+- **Responsive**: Theme adapts to all screen sizes
+
+## Customization
+
+### Adding New Languages
+
+1. Add locale to `src/i18n/routing.ts`
+2. Create message file in `messages/[locale].json`
+3. Update font configuration in `src/app/[locale]/layout.tsx`
+
+### Modifying Colors
+
+Update the Islamic color variables in `src/app/globals.css`:
+
+```css
+--islamic-green-600: 142 76% 36%;
+--islamic-gold-600: 32 95% 44%;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Adding New Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Create page component in `src/app/[locale]/[page]/page.tsx`
+2. Add translations to message files
+3. Update navigation in `src/components/header.tsx`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Design Philosophy
 
-## Learn More
+This project follows Islamic design principles:
 
-To learn more about Next.js, take a look at the following resources:
+- **Respectful Colors**: Deep greens representing nature and peace, golds for elegance
+- **Clean Layout**: Minimalist design focusing on content
+- **Cultural Sensitivity**: All content appropriate for Islamic market
+- **Accessibility**: Proper RTL support and high contrast ratios
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The project is optimized for deployment on Vercel, Netlify, or any platform supporting Next.js.
 
-## Deploy on Vercel
+```bash
+pnpm build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is for educational and showcase purposes.
+
+---
+
+**Alrwda** - Your trusted source for premium Islamic electric clocks.

@@ -1,0 +1,153 @@
+{
+  "common": {
+    "home": "Home",
+    "products": "Products",
+    "contact": "Contact",
+    "support": "Technical Support",
+    "about": "About",
+    "language": "Language",
+    "theme": "Theme",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode"
+  },
+  "home": {
+    "title": "Alrwda Islamic Electric Clocks",
+    "subtitle": "Your Trusted Source for Premium Islamic Electric Clocks",
+    "hero": {
+      "title": "Alrwda Islamic Electric Clocks",
+      "description": "Discover our collection of high-quality Islamic electric clocks designed to enhance your spiritual journey with accurate prayer times and beautiful Islamic aesthetics.",
+      "cta": "View Products",
+      "contact": "Contact Us"
+    },
+    "heroDescription": "Discover our collection of high-quality Islamic electric clocks designed to enhance your spiritual journey with accurate prayer times and beautiful Islamic aesthetics.",
+    "featuredProducts": "Featured Products",
+    "aboutMarket": "About Our Market",
+    "aboutDescription": "Alrwda specializes in providing premium Islamic electric clocks that combine traditional Islamic design with modern technology. Our products help Muslims worldwide stay connected to their prayer times with accuracy and elegance.",
+    "viewProducts": "View All Products",
+    "contactUs": "Contact Us"
+  },
+  "products": {
+    "title": "Our Islamic Electric Clocks",
+    "subtitle": "Discover our premium collection of Islamic electric clocks designed for accurate prayer times and beautiful Islamic aesthetics",
+    "loading": "Loading products...",
+    "accurateTiming": "Accurate Timing",
+    "premiumQuality": "Premium Quality",
+    "worldwideDelivery": "Worldwide Delivery",
+    "featuredProducts": "Featured Products",
+    "featuredDescription": "Explore our carefully selected collection of Islamic clocks, each designed with precision and Islamic values in mind",
+    "viewDetails": "View Details",
+    "contactForPrice": "Contact for Price",
+    "reviews": "reviews",
+    "categoriesTitle": "Browse Categories",
+    "categoriesDescription": "Find the perfect Islamic clock for your needs",
+    "ctaTitle": "Need Help Choosing?",
+    "ctaDescription": "Contact our experts for personalized recommendations and technical support",
+    "contactUs": "Contact Us",
+    "technicalSupport": "Technical Support",
+    "all": "All Products",
+    "categories": {
+      "all": "All Products",
+      "wall": "Wall Clocks",
+      "table": "Table Clocks",
+      "digital": "Digital Clocks",
+      "analog": "Analog Clocks"
+    },
+    "features": {
+      "prayerTimes": "Accurate Prayer Times",
+      "qiblaDirection": "Qibla Direction",
+      "adhan": "Adhan Calls",
+      "islamicCalendar": "Islamic Calendar"
+    }
+  },
+  "product": {
+    "notFound": "Product not found",
+    "backToProducts": "Back to Products",
+    "reviews": "reviews",
+    "description": "Description",
+    "contactForPrice": "Contact for Price",
+    "specifications": "Specifications",
+    "dimensions": "Dimensions",
+    "weight": "Weight",
+    "display": "Display",
+    "power": "Power",
+    "languages": "Languages",
+    "features": "Features",
+    "setupInstructions": "Setup Instructions",
+    "tags": "Tags"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Business Hours",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "closed": "Closed",
+    "getDirections": "Get Directions",
+    "loadingHours": "Loading business hours...",
+    "hoursUnavailable": "Business hours temporarily unavailable",
+    "callForHours": "Please call for current hours",
+    "holidayNote": "Hours may vary during Islamic holidays"
+  },
+  "support": {
+    "title": "Technical Support",
+    "subtitle": "We're here to help you",
+    "guides": "Product Guides",
+    "guidesDescription": "Step-by-step guides for setting up and using your Islamic clock",
+    "faq": "Frequently Asked Questions",
+    "faqDescription": "Answers to the most common questions about our Islamic clocks",
+    "warranty": "Warranty Information",
+    "warrantyDescription": "Information about warranty coverage and service options",
+    "troubleshooting": "Troubleshooting",
+    "troubleshootingDescription": "Solutions for common technical issues and problems",
+    "contactSupport": "Contact Support",
+    "getHelp": "Get Help Now",
+    "downloadManual": "Download Manual",
+    "watchVideo": "Watch Video Tutorial",
+    "items": {
+      "guides": [
+        "Initial Setup Guide",
+        "Prayer Time Configuration",
+        "Qibla Direction Calibration",
+        "Adhan Settings",
+        "Maintenance Instructions"
+      ],
+      "faq": [
+        "How to adjust prayer times?",
+        "Setting up multiple Adhan calls",
+        "Troubleshooting display issues",
+        "Battery replacement guide",
+        "Software updates"
+      ],
+      "warranty": [
+        "2-year manufacturer warranty",
+        "Extended warranty options",
+        "Repair service centers",
+        "Replacement parts",
+        "Return policy"
+      ],
+      "troubleshooting": [
+        "Clock not displaying correctly",
+        "Prayer times are incorrect",
+        "Adhan not playing",
+        "Button not responding",
+        "Power issues"
+      ]
+    }
+  },
+  "footer": {
+    "description": "Alrwda - Your trusted source for premium Islamic electric clocks",
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us",
+    "getInTouch": "Get in Touch",
+    "contactDescription": "Have questions? We'd love to hear from you!",
+    "copyright": "© 2025 Alrwda. All rights reserved."
+  }
+}
