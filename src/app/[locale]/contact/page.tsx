@@ -225,7 +225,7 @@ export default function ContactPage() {
                                 item.hours === t("contact.closed") ||
                                 !item.isOpen
                                   ? "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/20 px-2 py-1 rounded-md"
-                                  : "text-emerald-600 dark:text-emerald-400"
+                                  : "text-grey-600 dark:text-grey-400"
                               }`}
                             >
                               {item.hours}

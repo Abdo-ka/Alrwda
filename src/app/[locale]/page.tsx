@@ -14,7 +14,7 @@ export default function HomePage() {
         <section className="relative overflow-hidden bg-gradient-to-br from-palette-emerald-900 via-palette-emerald-800 to-palette-emerald-600 py-20 md:py-32">
           <div className="absolute inset-0 bg-[url('/islamic-pattern.svg')] opacity-10" />
           <div className="container relative px-8 text-center text-white">
-            <h1 className="mb-6 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="mb-6 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-6xl">
               {t("home.hero.title")}
             </h1>
             <p className="mx-auto mb-8 max-w-3xl text-lg text-palette-emerald-100 md:text-xl">
@@ -43,7 +43,7 @@ export default function HomePage() {
                 {t("home.featuredProducts")}
               </h2>
               <p className="mx-auto max-w-2xl text-muted-foreground md:text-lg">
-                Discover our premium collection of Islamic electric clocks
+                {t("home.featuredDescription") || "Discover our premium collection of Islamic electric clocks"}
               </p>
             </div>
             
@@ -53,16 +53,16 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-lg bg-palette-emerald-100 dark:bg-palette-emerald-900 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 mx-auto">
                     <Clock className="h-6 w-6 text-palette-emerald-600 dark:text-palette-emerald-400" />
                   </div>
-                  <CardTitle className="text-xl text-center">Wall Clocks</CardTitle>
-                  <CardDescription className="text-center">Premium Islamic wall clocks with prayer time displays</CardDescription>
+                  <CardTitle className="text-xl text-center">{t("home.wallClocks") || "Wall Clocks"}</CardTitle>
+                  <CardDescription className="text-center">{t("home.wallClocksDesc") || "Premium Islamic wall clocks with prayer time displays"}</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 justify-center">
                     <Star className="h-4 w-4 fill-palette-amber-500 text-palette-amber-500" />
-                    <span>4.9 rating</span>
+                    <span className="text-foreground">4.9 rating</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Beautiful Arabic calligraphy and precise prayer time displays.
+                    {t("home.wallClocksContent") || "Beautiful Arabic calligraphy and precise prayer time displays."}
                   </p>
                 </CardContent>
               </Card>
@@ -72,16 +72,16 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-lg bg-palette-red-100 dark:bg-palette-red-900 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 mx-auto">
                     <Clock className="h-6 w-6 text-palette-red-600 dark:text-palette-red-400" />
                   </div>
-                  <CardTitle className="text-xl text-center">Table Clocks</CardTitle>
-                  <CardDescription className="text-center">Elegant table clocks for offices and homes</CardDescription>
+                  <CardTitle className="text-xl text-center">{t("home.tableClocks") || "Table Clocks"}</CardTitle>
+                  <CardDescription className="text-center">{t("home.tableClocksDesc") || "Elegant table clocks for offices and homes"}</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 justify-center">
                     <Star className="h-4 w-4 fill-palette-amber-500 text-palette-amber-500" />
-                    <span>4.8 rating</span>
+                    <span className="text-foreground">4.8 rating</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Perfect for offices with Quranic verses and prayer reminders.
+                    {t("home.tableClocksContent") || "Perfect for offices with Quranic verses and prayer reminders."}
                   </p>
                 </CardContent>
               </Card>
@@ -91,16 +91,16 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-lg bg-brand-silver-200 dark:bg-brand-silver-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 mx-auto">
                     <Clock className="h-6 w-6 text-brand-silver-600 dark:text-brand-silver-400" />
                   </div>
-                  <CardTitle className="text-xl text-center">Digital Clocks</CardTitle>
-                  <CardDescription className="text-center">Modern digital clocks with LED displays</CardDescription>
+                  <CardTitle className="text-xl text-center">{t("home.digitalClocks") || "Digital Clocks"}</CardTitle>
+                  <CardDescription className="text-center">{t("home.digitalClocksDesc") || "Modern digital clocks with LED displays"}</CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4 justify-center">
                     <Star className="h-4 w-4 fill-palette-amber-500 text-palette-amber-500" />
-                    <span>4.9 rating</span>
+                    <span className="text-foreground">4.9 rating</span>
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Automatic prayer time calculation with bright LED displays.
+                    {t("home.digitalClocksContent") || "Automatic prayer time calculation with bright LED displays."}
                   </p>
                 </CardContent>
               </Card>
@@ -124,19 +124,19 @@ export default function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-islamic-green-100 dark:bg-islamic-green-900 flex items-center justify-center">
                       <Star className="h-4 w-4 text-islamic-green-600 dark:text-islamic-green-400" />
                     </div>
-                    <span className="text-sm">Premium Quality Islamic Timepieces</span>
+                    <span className="text-sm text-foreground">{t("home.premiumQuality")}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-islamic-green-100 dark:bg-islamic-green-900 flex items-center justify-center">
                       <MapPin className="h-4 w-4 text-islamic-green-600 dark:text-islamic-green-400" />
                     </div>
-                    <span className="text-sm">Worldwide Shipping Available</span>
+                    <span className="text-sm text-foreground">{t("home.worldwideShipping")}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-islamic-green-100 dark:bg-islamic-green-900 flex items-center justify-center">
                       <Phone className="h-4 w-4 text-islamic-green-600 dark:text-islamic-green-400" />
                     </div>
-                    <span className="text-sm">24/7 Customer Support</span>
+                    <span className="text-sm text-foreground">{t("home.customerSupport")}</span>
                   </div>
                 </div>
               </div>
@@ -154,18 +154,22 @@ export default function HomePage() {
           <div className="container px-8">
             <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 text-islamic-green-800 dark:text-islamic-green-200">
-                Ready to Enhance Your Prayer Experience?
+                {t("home.ctaTitle") || "Ready to Enhance Your Prayer Experience?"}
               </h2>
               <p className="mx-auto max-w-2xl text-muted-foreground md:text-lg mb-8">
-                Browse our collection and find the perfect Islamic clock for your home or office.
+                {t("home.ctaDescription") || "Browse our collection and find the perfect Islamic clock for your home or office."}
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Button asChild size="lg">
-                  <Link href="/products">{t("home.viewProducts")}</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/contact">{t("home.contactUs")}</Link>
-                </Button>
+                <Link href="/products">
+                  <Button size="lg" className="w-full sm:w-auto text-white bg-islamic-green-600 hover:bg-islamic-green-700">
+                    {t("home.viewProducts")}
+                  </Button>
+                </Link>
+                <Link href="/contact">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto text-foreground border-foreground hover:bg-foreground/10 hover:text-foreground">
+                    {t("home.contactUs")}
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

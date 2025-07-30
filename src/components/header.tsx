@@ -36,7 +36,7 @@ export function Header() {
                 className="relative transition-all duration-300 hover:text-islamic-green-600 dark:hover:text-islamic-green-400 text-foreground/70 hover:text-foreground group px-3 py-2"
               >
                 <span className="relative z-10">{item.name}</span>
-                <div className="absolute inset-0 rounded-md bg-islamic-green/10 scale-0 transition-transform duration-300 group-hover:scale-100" />
+                <div className="absolute inset-0 rounded-md bg-islamic-green-600/10 scale-0 transition-transform duration-300 group-hover:scale-100" />
               </Link>
             ))}
           </nav>
@@ -83,7 +83,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-foreground/70 transition-all duration-300 hover:text-islamic-green-600 dark:hover:text-islamic-green-400 hover:translate-x-2 py-2 px-3 rounded-md hover:bg-islamic-green/5"
+                className="text-foreground/70 transition-all duration-300 hover:text-islamic-green-600 dark:hover:text-islamic-green-400 hover:translate-x-2 py-2 px-3 rounded-md hover:bg-islamic-green-600/5"
                 onClick={() => setIsMenuOpen(false)}
                 style={{
                   animationDelay: `${index * 100}ms`,

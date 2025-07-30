@@ -10,11 +10,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-islamic-green hover:bg-islamic-green/90 text-white hover:shadow-islamic-green/25 transform hover:-translate-y-0.5",
+          "bg-islamic-green-600 hover:bg-islamic-green-700 text-white hover:shadow-islamic-green-600/25 transform hover:-translate-y-0.5 dark:text-white dark:bg-islamic-green-600 dark:hover:bg-islamic-green-700",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:shadow-destructive/25 transform hover:-translate-y-0.5",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground hover:border-islamic-green/50 transform hover:-translate-y-0.5",
+          "border border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground hover:border-islamic-green-600/50 transform hover:-translate-y-0.5 dark:text-white dark:border-white dark:hover:bg-white/10 dark:hover:text-white",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 transform hover:-translate-y-0.5",
         ghost: "hover:bg-accent hover:text-accent-foreground transform hover:scale-105",

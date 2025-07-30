@@ -2,7 +2,7 @@
 
 @layer base {
   :root {
-    --background: 208 100% 97%; /* #F0F8FF - Alice Blue */
+    --background: 200 67% 97%; /* #F4FAFC - Light blue-gray */
     --foreground: 0 0% 0%; /* Pure black for maximum contrast */
     --card: 0 0% 100%; /* Pure white for cards */
     --card-foreground: 0 0% 0%; /* Pure black text on cards */
@@ -95,6 +95,55 @@
     --accent-indigo-800: 244 55% 41%;
     --accent-indigo-900: 242 47% 34%;
     
+    /* Islamic Brand Colors - Green, Gold, Blue, Red */
+    --islamic-green-50: 151 81% 96%;
+    --islamic-green-100: 149 80% 90%;
+    --islamic-green-200: 152 76% 80%;
+    --islamic-green-300: 156 72% 67%;
+    --islamic-green-400: 158 64% 52%;
+    --islamic-green-500: 160 84% 39%;
+    --islamic-green-600: 161 94% 30%;
+    --islamic-green-700: 163 94% 24%;
+    --islamic-green-800: 163 88% 20%;
+    --islamic-green-900: 164 86% 16%;
+    --islamic-green-950: 164 84% 8%;
+    
+    --islamic-gold-50: 48 100% 96%;
+    --islamic-gold-100: 48 96% 89%;
+    --islamic-gold-200: 48 97% 77%;
+    --islamic-gold-300: 46 97% 65%;
+    --islamic-gold-400: 43 96% 56%;
+    --islamic-gold-500: 38 92% 50%;
+    --islamic-gold-600: 32 95% 44%;
+    --islamic-gold-700: 26 90% 37%;
+    --islamic-gold-800: 23 83% 31%;
+    --islamic-gold-900: 22 78% 26%;
+    --islamic-gold-950: 22 75% 13%;
+    
+    --islamic-blue-50: 225 100% 97%;
+    --islamic-blue-100: 226 100% 94%;
+    --islamic-blue-200: 228 96% 89%;
+    --islamic-blue-300: 230 94% 82%;
+    --islamic-blue-400: 234 89% 74%;
+    --islamic-blue-500: 239 84% 67%;
+    --islamic-blue-600: 243 75% 59%;
+    --islamic-blue-700: 245 58% 51%;
+    --islamic-blue-800: 244 55% 41%;
+    --islamic-blue-900: 242 47% 34%;
+    --islamic-blue-950: 242 44% 17%;
+    
+    --islamic-red-50: 0 86% 97%;
+    --islamic-red-100: 0 93% 94%;
+    --islamic-red-200: 0 96% 89%;
+    --islamic-red-300: 0 94% 82%;
+    --islamic-red-400: 0 91% 71%;
+    --islamic-red-500: 0 84% 60%;
+    --islamic-red-600: 0 72% 51%;
+    --islamic-red-700: 0 74% 42%;
+    --islamic-red-800: 0 70% 35%;
+    --islamic-red-900: 0 63% 31%;
+    --islamic-red-950: 0 61% 16%;
+    
     /* Enhanced UI Colors */
     --surface: 208 100% 98%;
     --surface-variant: 208 50% 95%;
@@ -111,13 +160,14 @@
     color: hsl(var(--foreground)) !important;
   }
   
-  /* Ensure text visibility in light mode - More specific selectors */
+  /* Ensure all text elements use proper foreground color */
+    /* Ensure text visibility in light mode - More specific selectors */
   :root h1, :root h2, :root h3, :root h4, :root h5, :root h6, 
   :root p, :root span, :root div, :root a, :root button {
-    color: hsl(var(--foreground)) !important;
+    color: hsl(var(--foreground));
   }
   
-  /* Force black text for specific text classes */
+  /* Force proper text colors for specific text classes */
   :root .text-white {
     color: #000000 !important;
   }
@@ -130,7 +180,7 @@
   
   /* Ensure muted text is still visible */
   :root .text-muted-foreground {
-    color: hsl(0 0% 20%) !important;
+    color: hsl(var(--muted-foreground));
   }
   
   /* Button text overrides for light mode */
@@ -143,6 +193,21 @@
   :root:not(.dark) .bg-transparent button,
   :root:not(.dark) .bg-background button {
     color: #000000 !important;
+  }
+  
+  /* Ensure proper foreground color inheritance */
+  .text-foreground {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Ensure icons use proper colors */
+  :root svg {
+    color: inherit;
+  }
+  
+  /* Fix button text colors */
+  :root button {
+    color: inherit;
   }
 
   .dark {
@@ -187,6 +252,66 @@
     transition: background-color 0.3s ease, color 0.3s ease;
     padding: 0;
     margin: 0;
+  }
+  
+  /* Ensure proper text color inheritance across all elements */
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  /* Reset text colors for specific elements that should use foreground */
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(var(--foreground));
+  }
+  
+  /* Ensure links inherit button colors when used as button children */
+  button a, .button a, [role="button"] a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  
+  /* Specific override for asChild button components */
+  button[data-slot] {
+    color: inherit;
+  }
+  
+  a[data-slot] {
+    color: inherit !important;
+  }
+  
+  /* Force button text visibility */
+  button {
+    color: inherit;
+  }
+  
+  /* Ensure outline buttons have proper text color */
+  button[class*="outline"] {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Dark mode button text fixes */
+  .dark button[class*="outline"] {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* White text should remain white when explicitly set */
+  .text-white {
+    color: #ffffff !important;
+  }
+  
+  /* Override white text only in light mode, not dark mode */
+  :root:not(.dark) .text-white {
+    color: #000000 !important;
+  }
+  
+  /* Foreground text should use CSS variable */
+  .text-foreground {
+    color: hsl(var(--foreground)) !important;
+  }
+  
+  /* Muted text should use muted-foreground */
+  .text-muted-foreground {
+    color: hsl(var(--muted-foreground)) !important;
   }
   
   /* Container with consistent padding */
