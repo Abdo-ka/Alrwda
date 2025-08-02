@@ -1,6 +1,4 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import {
   Card,
   CardContent,
@@ -10,7 +8,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react";
-import { useEffect, useState, useCallback } from "react";
+import { getBusinessHours, getBusinessContact } from "@/lib/data";
+import InteractiveMap from "@/components/interactive-map";
 
 interface BusinessHour {
   day: string;
@@ -18,57 +17,38 @@ interface BusinessHour {
   isOpen: boolean;
 }
 
-export default function ContactPage() {
-  const t = useTranslations();
-  const [businessHours, setBusinessHours] = useState<BusinessHour[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+interface ContactPageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
 
-  const getTranslatedDay = useCallback(
-    (day: string) => {
-      const dayMap: Record<string, string> = {
-        Monday: t("contact.monday"),
-        Tuesday: t("contact.tuesday"),
-        Wednesday: t("contact.wednesday"),
-        Thursday: t("contact.thursday"),
-        Friday: t("contact.friday"),
-        Saturday: t("contact.saturday"),
-        Sunday: t("contact.sunday"),
-      };
-      return dayMap[day] || day;
-    },
-    [t],
-  );
+export default async function ContactPage({ params }: ContactPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations();
+  
+  const businessHours = getBusinessHours();
+  const contactInfo = getBusinessContact();
 
-  useEffect(() => {
-    const fetchBusinessHours = async () => {
-      try {
-        const response = await fetch("/api/business-hours");
-        if (response.ok) {
-          const hours = await response.json();
-
-          // Map the days with proper translations and check if open
-          const translatedHours = hours.map((hour: BusinessHour) => ({
-            day: getTranslatedDay(hour.day),
-            hours: hour.hours === "Closed" ? t("contact.closed") : hour.hours,
-            isOpen: hour.isOpen,
-          }));
-
-          setBusinessHours(translatedHours);
-          setError(false);
-        } else {
-          setError(true);
-        }
-      } catch (error) {
-        console.error("Error loading business hours:", error);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
+  const getTranslatedDay = (day: string) => {
+    const dayMap: Record<string, string> = {
+      Monday: t("contact.monday"),
+      Tuesday: t("contact.tuesday"),
+      Wednesday: t("contact.wednesday"),
+      Thursday: t("contact.thursday"),
+      Friday: t("contact.friday"),
+      Saturday: t("contact.saturday"),
+      Sunday: t("contact.sunday"),
     };
+    return dayMap[day] || day;
+  };
 
-    fetchBusinessHours();
-  }, [t, getTranslatedDay]);
+  // Map the days with proper translations and check if open
+  const translatedHours = businessHours.map((hour: BusinessHour) => ({
+    day: getTranslatedDay(hour.day),
+    hours: hour.hours === "Closed" ? t("contact.closed") : hour.hours,
+    isOpen: hour.isOpen,
+  }));
 
   return (
     <div className="flex flex-col">
@@ -118,16 +98,24 @@ export default function ContactPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      {t("contact.streetAddress") ||
-                        "123 Islamic Market Street"}
+                      643R+R72, Al-Qudsy street
                       <br />
-                      {t("contact.cityAddress") || "Clock District, City 12345"}
-                      <br />
-                      {t("contact.countryAddress") || "Kingdom of Saudi Arabia"}
+                      Aleppo, Syria
                     </p>
-                    <Button variant="outline" size="sm" className="mt-3">
-                      <Navigation className="h-4 w-4 mr-2" />
-                      {t("contact.getDirections")}
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="mt-3"
+                      asChild
+                    >
+                      <a
+                        href="https://www.google.com/maps/place/643R%2BR72,+Aleppo,+Syria/@36.204708,37.140884,17z"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Navigation className="h-4 w-4 mr-2" />
+                        {t("contact.getDirections")}
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>
@@ -145,10 +133,9 @@ export default function ContactPage() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      {t("contact.mainPhone") || "+966 11 123 4567"}
+                      +963 21 123 4567
                       <br />
-                      {t("contact.whatsappPhone") ||
-                        "+966 50 123 4567 (WhatsApp)"}
+                      +963 9XX XXX XXX (WhatsApp)
                     </p>
                   </CardContent>
                 </Card>
@@ -190,15 +177,7 @@ export default function ContactPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {loading ? (
-                      <div className="text-center py-6">
-                        <div className="inline-flex items-center justify-center w-8 h-8 border-2 border-palette-emerald-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-                        <p className="text-sm text-muted-foreground">
-                          {t("contact.loadingHours") ||
-                            "Loading business hours..."}
-                        </p>
-                      </div>
-                    ) : error || businessHours.length === 0 ? (
+                    {translatedHours.length === 0 ? (
                       <div className="text-center py-6">
                         <Clock className="h-8 w-8 text-muted-foreground/50 mx-auto mb-3" />
                         <p className="text-sm text-muted-foreground">
@@ -212,7 +191,7 @@ export default function ContactPage() {
                       </div>
                     ) : (
                       <div className="space-y-1">
-                        {businessHours.map((item, index) => (
+                        {translatedHours.map((item, index) => (
                           <div
                             key={index}
                             className="flex justify-between items-center py-3 px-2 rounded-lg hover:bg-muted/50 transition-colors"
@@ -244,29 +223,24 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              {/* Map Placeholder */}
+              {/* Map */}
               <Card>
                 <CardHeader>
                   <CardTitle className="text-xl text-foreground">
-                    {t("contact.location") || "Location"}
+                    {t("contact.location") || "Our Location"}
                   </CardTitle>
                   <CardDescription className="text-muted-foreground">
-                    {t("contact.locationDesc") ||
-                      "Find us in the heart of the Islamic market district"}
+                    Visit our showroom in Aleppo, Syria
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
-                      <p className="text-sm text-muted-foreground">
-                        {t("contact.interactiveMap") || "Interactive Map"}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        {t("contact.comingSoon") || "Coming Soon"}
-                      </p>
-                    </div>
-                  </div>
+                  <InteractiveMap 
+                    address="643R+R72, Al-Qudsy street, Aleppo, Syria"
+                    coordinates={{
+                      lat: 36.204708,
+                      lng: 37.140884
+                    }}
+                  />
                 </CardContent>
               </Card>
             </div>

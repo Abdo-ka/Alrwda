@@ -1,0 +1,45 @@
+{
+  "title": "Business Hours",
+  "description": "Opening hours for Alrwda Islamic Clock Market",
+  "lastUpdated": "2025-01-29",
+  "regularHours": {
+    "monday": {
+      "open": "9:00 AM",
+      "close": "8:00 PM"
+    },
+    "tuesday": {
+      "open": "9:00 AM",
+      "close": "8:00 PM"
+    },
+    "wednesday": {
+      "open": "9:00 AM",
+      "close": "8:00 PM"
+    },
+    "thursday": {
+      "open": "9:00 AM",
+      "close": "8:00 PM"
+    },
+    "friday": {
+      "open": "2:00 PM",
+      "close": "8:00 PM"
+    },
+    "saturday": {
+      "open": "9:00 AM",
+      "close": "8:00 PM"
+    },
+    "sunday": "Closed"
+  },
+  "holidayHours": {
+    "note": "During Islamic holidays, our hours may vary. Please call ahead to confirm availability."
+  },
+  "contact": {
+    "phone": "+966 11 123 4567",
+    "whatsapp": "+966 50 123 4567",
+    "email": "info@alrwda-clocks.com"
+  },
+  "location": {
+    "street": "123 Islamic Market Street",
+    "district": "Clock District, City 12345",
+    "country": "Kingdom of Saudi Arabia"
+  }
+}

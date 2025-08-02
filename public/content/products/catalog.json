@@ -1,0 +1,279 @@
+{
+  "title": "Islamic Electric Clock Catalog",
+  "description": "Complete catalog of our Islamic electric clocks and prayer time displays",
+  "lastUpdated": "2025-01-29",
+  "categories": [
+    {
+      "id": "digital-clocks",
+      "nameEn": "Digital Clocks",
+      "nameAr": "ساعات رقمية",
+      "description": "Modern digital displays with advanced features and customization options."
+    },
+    {
+      "id": "wall-clocks",
+      "nameEn": "Wall Clocks",
+      "nameAr": "ساعات حائطية",
+      "description": "Large format clocks perfect for mosques, Islamic centers, and community spaces."
+    },
+    {
+      "id": "portable-clocks",
+      "nameEn": "Portable Clocks",
+      "nameAr": "ساعات محمولة",
+      "description": "Compact and travel-friendly clocks for personal use and small spaces."
+    },
+    {
+      "id": "smart-clocks",
+      "nameEn": "Smart Clocks",
+      "nameAr": "ساعات ذكية",
+      "description": "Internet-connected clocks with mobile app integration and cloud features."
+    },
+    {
+      "id": "table-clocks",
+      "nameEn": "Table Clocks",
+      "nameAr": "ساعات طاولة",
+      "description": "Elegant desk and table clocks for offices and homes."
+    },
+    {
+      "id": "outdoor-displays",
+      "nameEn": "Outdoor Displays",
+      "nameAr": "شاشات خارجية",
+      "description": "Weather-resistant displays for outdoor installations and large venues."
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "slug": "digital-azan-pro",
+      "price": "$149.99",
+      "rating": 4.8,
+      "reviews": 124,
+      "images": [
+        "/products/digital-azan-pro-1.jpg",
+        "/products/digital-azan-pro-2.jpg",
+        "/products/digital-azan-pro-3.jpg"
+      ],
+      "name": {
+        "en": "Digital Azan Clock Pro",
+        "ar": "ساعة الأذان الرقمية برو"
+      },
+      "description": {
+        "en": "Premium digital clock with accurate prayer times and Quran recitation",
+        "ar": "ساعة رقمية فاخرة مع أوقات الصلاة الدقيقة وتلاوة القرآن"
+      },
+      "category": {
+        "en": "Digital Clocks",
+        "ar": "ساعات رقمية"
+      },
+      "categoryId": "digital-clocks",
+      "features": [
+        "Prayer Times",
+        "Azan Alerts",
+        "Qibla Direction",
+        "Temperature Display",
+        "Islamic Calendar"
+      ],
+      "specifications": {
+        "dimensions": "12 x 8 x 3 inches",
+        "weight": "2.5 lbs",
+        "display": "LCD Digital Display",
+        "power": "AC Adapter + Battery Backup",
+        "languages": ["Arabic", "English", "French", "Turkish"]
+      }
+    },
+    {
+      "id": "2",
+      "slug": "masjid-wall-clock",
+      "price": "$299.99",
+      "rating": 4.9,
+      "reviews": 89,
+      "images": [
+        "/products/masjid-wall-1.jpg",
+        "/products/masjid-wall-2.jpg",
+        "/products/masjid-wall-3.jpg"
+      ],
+      "name": {
+        "en": "Masjid Wall Clock",
+        "ar": "ساعة مسجد حائطية"
+      },
+      "description": {
+        "en": "Large wall-mounted clock perfect for mosques and Islamic centers",
+        "ar": "ساعة حائطية كبيرة مثالية للمساجد والمراكز الإسلامية"
+      },
+      "category": {
+        "en": "Wall Clocks",
+        "ar": "ساعات حائطية"
+      },
+      "categoryId": "wall-clocks",
+      "features": [
+        "Large Display",
+        "Remote Control",
+        "Multiple Time Zones",
+        "Hijri Calendar",
+        "Temperature"
+      ],
+      "specifications": {
+        "dimensions": "24 x 16 x 4 inches",
+        "weight": "8 lbs",
+        "display": "LED Large Display",
+        "power": "AC Power with UPS Support",
+        "languages": ["Arabic", "English", "Urdu", "Turkish"]
+      }
+    },
+    {
+      "id": "3",
+      "slug": "portable-prayer-timer",
+      "price": "$79.99",
+      "rating": 4.6,
+      "reviews": 156,
+      "images": [
+        "/products/portable-timer-1.jpg",
+        "/products/portable-timer-2.jpg",
+        "/products/portable-timer-3.jpg"
+      ],
+      "name": {
+        "en": "Portable Prayer Timer",
+        "ar": "مؤقت الصلاة المحمول"
+      },
+      "description": {
+        "en": "Compact and portable clock for travelers and small spaces",
+        "ar": "ساعة مدمجة ومحمولة للمسافرين والأماكن الصغيرة"
+      },
+      "category": {
+        "en": "Portable Clocks",
+        "ar": "ساعات محمولة"
+      },
+      "categoryId": "portable-clocks",
+      "features": [
+        "Travel Friendly",
+        "Battery Powered",
+        "Compact Design",
+        "Quick Setup",
+        "Multiple Cities"
+      ],
+      "specifications": {
+        "dimensions": "6 x 4 x 2 inches",
+        "weight": "0.8 lbs",
+        "display": "LCD Display",
+        "power": "Battery Powered",
+        "languages": ["Arabic", "English"]
+      }
+    },
+    {
+      "id": "4",
+      "slug": "smart-islamic-clock",
+      "price": "$249.99",
+      "rating": 4.7,
+      "reviews": 78,
+      "images": [
+        "/products/smart-clock-1.jpg",
+        "/products/smart-clock-2.jpg",
+        "/products/smart-clock-3.jpg"
+      ],
+      "name": {
+        "en": "Smart Islamic Clock",
+        "ar": "الساعة الإسلامية الذكية"
+      },
+      "description": {
+        "en": "WiFi-enabled smart clock with app control and cloud synchronization",
+        "ar": "ساعة ذكية مزودة بـ WiFi مع تحكم التطبيق ومزامنة السحابة"
+      },
+      "category": {
+        "en": "Smart Clocks",
+        "ar": "ساعات ذكية"
+      },
+      "categoryId": "smart-clocks",
+      "features": [
+        "WiFi Connectivity",
+        "Mobile App Control",
+        "Cloud Sync",
+        "Voice Commands",
+        "Auto Updates"
+      ],
+      "specifications": {
+        "dimensions": "10 x 6 x 3 inches",
+        "weight": "2 lbs",
+        "display": "OLED Smart Display",
+        "power": "AC Adapter + Battery Backup",
+        "languages": ["Arabic", "English", "French", "Turkish", "Urdu"]
+      }
+    },
+    {
+      "id": "5",
+      "slug": "elegant-table-clock",
+      "price": "$129.99",
+      "rating": 4.5,
+      "reviews": 203,
+      "images": [
+        "/products/table-clock-1.jpg",
+        "/products/table-clock-2.jpg",
+        "/products/table-clock-3.jpg"
+      ],
+      "name": {
+        "en": "Elegant Table Clock",
+        "ar": "ساعة طاولة أنيقة"
+      },
+      "description": {
+        "en": "Beautiful wooden table clock with Islamic calligraphy design",
+        "ar": "ساعة طاولة خشبية جميلة بتصميم الخط الإسلامي"
+      },
+      "category": {
+        "en": "Table Clocks",
+        "ar": "ساعات طاولة"
+      },
+      "categoryId": "table-clocks",
+      "features": [
+        "Wooden Design",
+        "Islamic Calligraphy",
+        "Premium Materials",
+        "Handcrafted",
+        "Silent Operation"
+      ],
+      "specifications": {
+        "dimensions": "8 x 6 x 4 inches",
+        "weight": "1.5 lbs",
+        "display": "Analog with Digital Features",
+        "power": "Battery Powered",
+        "languages": ["Arabic", "English"]
+      }
+    },
+    {
+      "id": "6",
+      "slug": "outdoor-prayer-display",
+      "price": "$799.99",
+      "rating": 4.9,
+      "reviews": 45,
+      "images": [
+        "/products/outdoor-display-1.jpg",
+        "/products/outdoor-display-2.jpg",
+        "/products/outdoor-display-3.jpg"
+      ],
+      "name": {
+        "en": "Outdoor Prayer Display",
+        "ar": "شاشة الصلاة الخارجية"
+      },
+      "description": {
+        "en": "Weather-resistant outdoor display for Islamic institutions",
+        "ar": "شاشة خارجية مقاومة للطقس للمؤسسات الإسلامية"
+      },
+      "category": {
+        "en": "Outdoor Displays",
+        "ar": "شاشات خارجية"
+      },
+      "categoryId": "outdoor-displays",
+      "features": [
+        "Weather Resistant",
+        "High Brightness",
+        "Remote Management",
+        "Multiple Languages",
+        "Scheduled Announcements"
+      ],
+      "specifications": {
+        "dimensions": "48 x 32 x 6 inches",
+        "weight": "25 lbs",
+        "display": "LED Outdoor Display",
+        "power": "AC Power with Weather Protection",
+        "languages": ["Arabic", "English", "Urdu", "Turkish", "French"]
+      }
+    }
+  ]
+}

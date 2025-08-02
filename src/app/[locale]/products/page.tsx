@@ -1,16 +1,15 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
-import { Star, Clock, MapPin, Share2 } from "lucide-react";
+import { Star, Clock, MapPin } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { getProducts } from "@/lib/data";
+import ContactButton from "@/components/contact-button";
 
 interface Product {
   id: string;
+  slug: string;
   name: {
     en: string;
     ar: string;
@@ -27,64 +26,29 @@ interface Product {
     en: string;
     ar: string;
   };
+  categoryId: string;
+  features: string[];
+  specifications: {
+    dimensions: string;
+    weight: string;
+    display: string;
+    power: string;
+    languages: string[];
+  };
 }
 
-export default function ProductsPage() {
-  const params = useParams();
-  const locale = params.locale as string;
-  const t = useTranslations("products");
+interface ProductsPageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export default async function ProductsPage({ params }: ProductsPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations("products");
   const currentLang = locale as "en" | "ar";
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("/api/products");
-        if (response.ok) {
-          const productData = await response.json();
-          setProducts(productData);
-          setError(false);
-        } else {
-          console.error("Failed to fetch products");
-          setError(true);
-        }
-      } catch (error) {
-        console.error("Error loading products:", error);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <Clock className="h-8 w-8 animate-spin mx-auto mb-4" />
-          <p>{t("loading")}</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <Clock className="h-8 w-8 text-muted-foreground mx-auto mb-4" />
-          <p className="text-lg font-medium mb-2">Coming back soon</p>
-          <p className="text-muted-foreground">
-            We&apos;re working on getting our products back online.
-          </p>
-        </div>
-      </div>
-    );
-  }
+  
+  const products = getProducts();
 
   return (
     <div className="min-h-screen bg-background transition-colors duration-300">
@@ -130,17 +94,21 @@ export default function ProductsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product, index) => (
-              <Card
+              <Link
                 key={product.id}
-                className={`group hover:shadow-xl transition-all duration-500 border-2 hover:scale-[1.02] ${
-                  index % 3 === 0
-                    ? "border-palette-black/20 hover:border-palette-black"
-                    : index % 3 === 1
-                      ? "border-palette-silver/20 hover:border-palette-silver"
-                      : "border-palette-red/20 hover:border-palette-red"
-                }`}
+                href={`/${locale}/products/${product.id}`}
+                className="group block"
               >
-                <div className="relative overflow-hidden rounded-t-lg">
+                <Card
+                  className={`h-full bg-card hover:shadow-xl transition-all duration-500 border-2 hover:scale-[1.02] cursor-pointer overflow-hidden flex flex-col ${
+                    index % 3 === 0
+                      ? "border-palette-emerald-200 hover:border-palette-emerald-400 dark:border-palette-emerald-800 dark:hover:border-palette-emerald-600"
+                      : index % 3 === 1
+                        ? "border-palette-amber-200 hover:border-palette-amber-400 dark:border-palette-amber-800 dark:hover:border-palette-amber-600"
+                        : "border-palette-red-200 hover:border-palette-red-400 dark:border-palette-red-800 dark:hover:border-palette-red-600"
+                  }`}
+                >
+                <div className="relative overflow-hidden">
                   <Image
                     src={product.images[0]}
                     alt={product.name[currentLang]}
@@ -148,27 +116,14 @@ export default function ProductsPage() {
                     height={300}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute top-4 right-4 flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="bg-white/90 hover:bg-white border-none shadow-md"
-                      onClick={() => {
-                        // Test Sentry error tracking
-                        throw new Error(
-                          `Sentry test error - Share clicked for product: ${product.name[currentLang]} (ID: ${product.id})`,
-                        );
-                      }}
-                    >
-                      <Share2 className="h-4 w-4 text-palette-black" />
-                    </Button>
+                  <div className="absolute top-3 right-3">
                     <div
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium shadow-lg backdrop-blur-sm border ${
                         index % 3 === 0
-                          ? "bg-palette-emerald-100 text-palette-emerald-800 dark:bg-palette-emerald-900 dark:text-palette-emerald-200"
+                          ? "bg-emerald-100/90 text-emerald-800 border-emerald-200/50 dark:bg-emerald-900/90 dark:text-emerald-100 dark:border-emerald-700/50"
                           : index % 3 === 1
-                            ? "bg-palette-amber-100 text-palette-amber-800 dark:bg-palette-amber-900 dark:text-palette-amber-200"
-                            : "bg-palette-indigo-100 text-palette-indigo-800 dark:bg-palette-indigo-900 dark:text-palette-indigo-200"
+                            ? "bg-amber-100/90 text-amber-800 border-amber-200/50 dark:bg-amber-900/90 dark:text-amber-100 dark:border-amber-700/50"
+                            : "bg-red-100/90 text-red-800 border-red-200/50 dark:bg-red-900/90 dark:text-red-100 dark:border-red-700/50"
                       }`}
                     >
                       {product.category[currentLang]}
@@ -176,21 +131,21 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                <CardContent className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-1">
                     {product.name[currentLang]}
                   </h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-2">
+                  <p className="text-muted-foreground mb-4 line-clamp-2 text-sm flex-1">
                     {product.description[currentLang]}
                   </p>
 
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-bold text-palette-red">
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-2xl font-bold text-primary">
                       {product.price}
                     </span>
                     <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-palette-amber-500 fill-current" />
-                      <span className="text-sm font-medium">
+                      <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                      <span className="text-sm font-medium text-foreground">
                         {product.rating}
                       </span>
                       <span className="text-xs text-muted-foreground">
@@ -200,31 +155,29 @@ export default function ProductsPage() {
                   </div>
                 </CardContent>
 
-                <CardFooter className="p-6 pt-0 space-y-3">
-                  <Link
-                    href={`/${locale}/products/${product.id}`}
-                    className="w-full"
-                  >
+                <CardFooter className="p-6 pt-0">
+                  <div className="flex flex-col gap-3 w-full">
                     <Button
-                      className={`w-full ${
+                      className={`w-full text-white transition-all duration-300 hover:scale-105 ${
                         index % 3 === 0
-                          ? "bg-palette-black hover:bg-palette-black/80"
+                          ? "bg-palette-emerald-600 hover:bg-palette-emerald-700"
                           : index % 3 === 1
-                            ? "bg-palette-silver hover:bg-palette-silver/80 text-palette-black"
-                            : "bg-palette-red hover:bg-palette-red/80"
-                      } text-white transition-all duration-300 hover:scale-105`}
+                            ? "bg-palette-amber-600 hover:bg-palette-amber-700"
+                            : "bg-palette-red-600 hover:bg-palette-red-700"
+                      }`}
                     >
                       {t("viewDetails")}
                     </Button>
-                  </Link>
-                  <Button
-                    variant="outline"
-                    className="w-full border-palette-silver hover:bg-palette-silver/10 transition-all duration-300"
-                  >
-                    {t("contactForPrice")}
-                  </Button>
+                    <ContactButton
+                      locale={locale}
+                      className="w-full border-border hover:bg-muted/50 transition-all duration-300"
+                    >
+                      {t("contactForPrice")}
+                    </ContactButton>
+                  </div>
                 </CardFooter>
               </Card>
+              </Link>
             ))}
           </div>
         </div>
